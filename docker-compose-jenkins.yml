@@ -1,0 +1,16 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+        - jenkins_home:/var/jenkins_home
+volumes:
+  jenkins_home:
+    driver: vieux/sshfs:latest
+    driver_opts:
+      sshcmd: "ec2-user@172.31.54.208:/volumes/jenkins_home"
+      IdentityFile: "/root/.ssh/id_rsa"
+      allow_other: ""
