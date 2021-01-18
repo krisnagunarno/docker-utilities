@@ -7,6 +7,9 @@ services:
       - 50000:50000
     volumes:
         - jenkins_home:/var/jenkins_home
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 volumes:
   jenkins_home:
     driver: vieux/sshfs:latest
@@ -14,3 +17,4 @@ volumes:
       sshcmd: "ec2-user@172.31.54.208:/volumes/jenkins_home"
       IdentityFile: "/root/.ssh/id_rsa"
       allow_other: ""
+

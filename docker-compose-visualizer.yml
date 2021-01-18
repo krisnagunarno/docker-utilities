@@ -1,0 +1,11 @@
+version: '3'
+services:
+  visualizer:
+    image: "dockersamples/visualizer:latest"
+    volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+    - "8081:8080"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
