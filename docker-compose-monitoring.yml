@@ -14,7 +14,7 @@ services:
       - cadvisor
     deploy:
       placement:
-        constraints: [node.hostname == 172.31.54.208]
+        constraints: [node.role == manager]
 
   cadvisor:
     image: gcr.io/google-containers/cadvisor:latest
