@@ -19,3 +19,22 @@ services:
       placement:
         constraints: [node.role == manager]
 
+  fluentd:
+    image: kgunarno/futurefluentd:1.0
+    volumes:
+      - ./fluentd/conf:/fluentd/etc
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+    deploy:
+      mode: global
+
+  apm:
+    command: --strict.perms=false
+    image: docker.elastic.co/apm/apm-server:7.8.1
+    ports:
+      - 8200:8200
+    volumes:
+      - "./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml"
+
+
