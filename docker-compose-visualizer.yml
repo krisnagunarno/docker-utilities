@@ -1,11 +1,14 @@
 version: '3'
 services:
-  visualizer:
-    image: "dockersamples/visualizer:latest"
+  swarmpit:
+    image: "swarmpit/install:1.9"
     volumes:
     - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+    - INTERACTIVE=0
+    - STACK_NAME=future
     ports:
-    - "8081:8080"
+    - "888:888"
     deploy:
       placement:
         constraints: [node.role == manager]
@@ -14,4 +17,4 @@ services:
       options:
         fluentd-async-connect: "true"
         fluentd-address: future_fluentd:24224
-        tag: visualizer
+        tag: swarmpit
