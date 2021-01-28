@@ -22,7 +22,7 @@ services:
   fluentd:
     image: kgunarno/futurefluentd:1.0
     volumes:
-      -   fluentd/conf:/fluentd/etc
+      -   "fluentd/conf:/fluentd/etc"
     ports:
       - "24224:24224"
       - "24224:24224/udp"
