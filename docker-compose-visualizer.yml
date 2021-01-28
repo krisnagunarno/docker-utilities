@@ -1,14 +1,11 @@
 version: '3'
 services:
   swarmpit:
-    image: "swarmpit/install:1.9"
+    image: "dockersamples/visualizer"
     volumes:
     - "/var/run/docker.sock:/var/run/docker.sock"
-    environment:
-    - INTERACTIVE=0
-    - STACK_NAME=future
     ports:
-    - "888:888"
+    - "8081:8080"
     deploy:
       placement:
         constraints: [node.role == manager]
