@@ -22,6 +22,7 @@ pipeline {
           script{
             def files = findFiles(glob: '*.yml')
             def command = "docker stack deploy "
+            echo files
             files.each {
               echo "${files[0]}"
               command += "-c ${files} "
