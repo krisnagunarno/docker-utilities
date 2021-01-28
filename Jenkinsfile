@@ -20,7 +20,7 @@ pipeline {
         steps {
           echo "Deploying Services"
           script{
-            def files = findFiles(glob: '*.xml')
+            def files = findFiles(glob: '*.yml')
             def command = "docker stack deploy "
             files.each {
               echo "${files}"
