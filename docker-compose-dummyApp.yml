@@ -36,8 +36,8 @@ services:
      deploy:
        placement:
          constraints: [node.role == worker]
-         logging:
-     driver: "fluentd"
+     logging:
+       driver: "fluentd"
        options:
          fluentd-async-connect: "true"
          fluentd-address: future_fluentd:24224
