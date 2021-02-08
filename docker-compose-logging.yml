@@ -26,8 +26,6 @@ services:
     ports:
       - "24224:24224"
       - "24224:24224/udp"
-    deploy:
-      mode: global
 
   apm:
     command: --strict.perms=false
