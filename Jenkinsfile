@@ -5,7 +5,7 @@ pipeline {
   }
 
   stages {
-    stage ('Test Pipeline 1') {
+    stage ('Test Pipeline') {
       steps {
         echo "Show Docker 1"
         sh '''
