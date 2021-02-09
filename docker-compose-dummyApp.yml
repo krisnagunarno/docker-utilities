@@ -1,38 +1,11 @@
 version: '3'
 
-services:
-   db:
-     image: mysql:5.7
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
-     environment:
-       MYSQL_ROOT_PASSWORD: somewordpress
-       MYSQL_DATABASE: wordpress
-       MYSQL_USER: wordpress
-       MYSQL_PASSWORD: wordpress
-     deploy:
-       placement:
-         constraints: [node.role == worker]
-     logging:
-       driver: "fluentd"
-       options:
-         fluentd-async-connect: "true"
-         fluentd-address: future_fluentd:24224
-         tag: mysql
-         
-   wordpress:
-     depends_on:
-       - db
-     image: wordpress:latest
+services:         
+   backend:
+     image: kgunarno/bliblimart-backend
      ports:
-       - "80:80"
+       - "8082:8080"
      restart: always
-     environment:
-       WORDPRESS_DB_HOST: db:3306
-       WORDPRESS_DB_USER: wordpress
-       WORDPRESS_DB_PASSWORD: wordpress
-       WORDPRESS_DB_NAME: wordpress
      deploy:
        placement:
          constraints: [node.role == worker]
@@ -42,5 +15,3 @@ services:
          fluentd-async-connect: "true"
          fluentd-address: future_fluentd:24224
          tag: wordpress
-volumes:
-    db_data: {}
