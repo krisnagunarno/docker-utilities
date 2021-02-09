@@ -2,7 +2,7 @@ version: '3'
 
 services:         
    backend:
-     image: kgunarno/bliblimart-backend
+     image: kgunarno/bliblimart-backend:7
      ports:
        - "8082:8080"
      restart: always
