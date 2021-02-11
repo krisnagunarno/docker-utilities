@@ -1,6 +1,20 @@
 version: '3'
 
-services:         
+services:
+   frontend:
+     image: kgunarno/bliblimart-frontend:6
+     ports:
+       - "80:80"
+     deploy:
+       placement:
+         constraints: [node.role == worker]
+     logging:
+       driver: "fluentd"
+       options:
+         fluentd-async-connect: "true"
+         fluentd-address: future_fluentd:24224
+         tag: backend
+         
    backend:
      image: kgunarno/bliblimart-backend:7
      ports:
@@ -8,10 +22,11 @@ services:
      restart: always
      deploy:
        placement:
-         constraints: [node.role == manager]
+         constraints: [node.role == worker]
      logging:
        driver: "fluentd"
        options:
          fluentd-async-connect: "true"
          fluentd-address: future_fluentd:24224
-         tag: wordpress
+         tag: backend
+     
