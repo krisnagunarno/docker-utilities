@@ -32,3 +32,17 @@ services:
          fluentd-address: future_fluentd:24224
          tag: backend
      
+    db:
+      image: mongo
+      ports:
+        - 27017:27017
+      deploy:
+       placement:
+         constraints: [node.role == worker]
+      logging:
+        driver: "fluentd"
+        options:
+          fluentd-async-connect: "true"
+          fluentd-address: future_fluentd:24224
+          tag: db
+     
