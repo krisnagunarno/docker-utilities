@@ -9,13 +9,13 @@ services:
        placement:
          constraints: [node.role == worker]
      environment:
-      - API_URL= future_backend:8082
+      - API_URL=future_backend:8082
      logging:
        driver: "fluentd"
        options:
          fluentd-async-connect: "true"
          fluentd-address: future_fluentd:24224
-         tag: backend
+         tag: frontend
          
    backend:
      image: kgunarno/bliblimart-backend:11
