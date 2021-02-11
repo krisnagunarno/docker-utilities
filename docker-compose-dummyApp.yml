@@ -9,7 +9,7 @@ services:
        placement:
          constraints: [node.role == worker]
      environment:
-      - API_URL=future_backend:8082
+      - API_URL=backend:8082
      logging:
        driver: "fluentd"
        options:
