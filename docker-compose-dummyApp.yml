@@ -9,7 +9,7 @@ services:
        placement:
          constraints: [node.role == worker]
      environment:
-      - API_URL=backend:8082
+      - API_URL=http://ec2-34-232-6-130.compute-1.amazonaws.com:8082
      logging:
        driver: "fluentd"
        options:
