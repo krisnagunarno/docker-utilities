@@ -18,7 +18,7 @@ services:
          tag: frontend
          
    backend:
-     image: kgunarno/bliblimart-backend:12
+     image: kgunarno/bliblimart-backend:13
      ports:
        - "8082:8080"
      restart: always
@@ -32,10 +32,25 @@ services:
          fluentd-address: future_fluentd:24224
          tag: backend
          
+   redis:
+     image: redis
+     ports:
+       - "6379:6379"
+     restart: always
+     deploy:
+       placement:
+         constraints: [node.role == worker]
+     logging:
+       driver: "fluentd"
+       options:
+         fluentd-async-connect: "true"
+         fluentd-address: future_fluentd:24224
+         tag: redis
+         
    db:
      image: mongo
      ports:
-       - 27017:27017
+       - "27017:27017"
      deploy:
        placement:
          constraints: [node.role == worker]
