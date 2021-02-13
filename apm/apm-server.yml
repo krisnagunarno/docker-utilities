@@ -8,7 +8,7 @@ queue.mem.events: 4096
 max_procs: 4
 
 output.elasticsearch:
-  hosts: ["http://future_elasticsearch:9200"]
+  hosts: ["http://ec2-34-232-6-130.compute-1.amazonaws.com:9200"]
 
 setup.kibana.host: "future_kibana:5601"
 
