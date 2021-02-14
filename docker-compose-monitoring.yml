@@ -42,8 +42,6 @@ services:
         
   grafana:
     image: grafana/grafana
-    volumes: 
-      - "./grafana/:/var/lib/grafana"
     deploy:
       placement:
         constraints:
