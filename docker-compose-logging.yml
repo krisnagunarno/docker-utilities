@@ -11,13 +11,7 @@ services:
       - "9300:9300"
     deploy:
       placement:
-        constraints: [node.role == manager]
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: elasticsearch    
+        constraints: [node.role == manager]   
 
   kibana:
     image: kibana:7.8.1
@@ -26,12 +20,6 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: kibana
         
   fluentd:
     image: kgunarno/futurefluentd:1.0
@@ -48,11 +36,5 @@ services:
       - 8200:8200
     volumes:
       - "./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml"
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: apm
 
 
