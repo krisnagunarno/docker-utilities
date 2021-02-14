@@ -12,6 +12,12 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-async-connect: "true"
+        fluentd-address: future_fluentd:24224
+        tag: frontend    
 
   kibana:
     image: kibana:7.8.1
@@ -20,7 +26,13 @@ services:
     deploy:
       placement:
         constraints: [node.role == manager]
-
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-async-connect: "true"
+        fluentd-address: future_fluentd:24224
+        tag: frontend
+        
   fluentd:
     image: kgunarno/futurefluentd:1.0
     volumes:
@@ -28,8 +40,6 @@ services:
     ports:
       - "24224:24224"
       - "24224:24224/udp"
-    deploy:
-      mode: global
       
   apm:
     command: --strict.perms=false
@@ -38,5 +48,11 @@ services:
       - 8200:8200
     volumes:
       - "./apm/apm-server.yml:/usr/share/apm-server/apm-server.yml"
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-async-connect: "true"
+        fluentd-address: future_fluentd:24224
+        tag: frontend
 
 
