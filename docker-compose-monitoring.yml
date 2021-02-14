@@ -61,7 +61,7 @@ services:
   nodeexporter2:       
     image: prom/node-exporter
     ports: 
-     - "9100:9100"
+     - "9101:9100"
     volumes:       
       - "/proc:/host/proc:ro"       
       - "/sys:/host/sys:ro"       
@@ -87,7 +87,7 @@ services:
   nodeexporter3:       
     image: prom/node-exporter
     ports: 
-     - "9100:9100"
+     - "9102:9100"
     volumes:       
       - "/proc:/host/proc:ro"       
       - "/sys:/host/sys:ro"       
@@ -113,7 +113,7 @@ services:
   nodeexporter4:       
     image: prom/node-exporter
     ports: 
-     - "9100:9100"
+     - "9103:9100"
     volumes:       
       - "/proc:/host/proc:ro"       
       - "/sys:/host/sys:ro"       
@@ -139,7 +139,7 @@ services:
   nodeexporter5:       
     image: prom/node-exporter
     ports: 
-     - "9100:9100"
+     - "9104:9100"
     volumes:       
       - "/proc:/host/proc:ro"       
       - "/sys:/host/sys:ro"       
@@ -186,7 +186,7 @@ services:
   cadvisor2:   
     image: google/cadvisor:latest
     ports:
-      - "9000:8080"
+      - "9001:8080"
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:rw"
@@ -207,7 +207,7 @@ services:
   cadvisor3:   
     image: google/cadvisor:latest
     ports:
-      - "9000:8080"
+      - "9002:8080"
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:rw"
@@ -228,7 +228,7 @@ services:
   cadvisor4:   
     image: google/cadvisor:latest
     ports:
-      - "9000:8080"
+      - "9003:8080"
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:rw"
@@ -249,7 +249,7 @@ services:
   cadvisor5:   
     image: google/cadvisor:latest
     ports:
-      - "9000:8080"
+      - "9004:8080"
     volumes:
       - "/:/rootfs:ro"
       - "/var/run:/var/run:rw"
