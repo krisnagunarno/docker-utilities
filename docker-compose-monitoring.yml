@@ -43,11 +43,11 @@ services:
   grafana:
     image: grafana/grafana
     volumes: 
-      - "./grafana:/var/lib/grafana"
+      - "prometheus:/var/lib/grafana"
     deploy:
       placement:
         constraints:
-          - node.role == manager
+          - node.role == worker
     ports:
       - "3000:3000"
     logging:
