@@ -32,7 +32,7 @@ services:
         fluentd-address: future_fluentd:24224
         tag: grafana
 
-  nodeexporter1:       
+  nodeexporter:       
     image: prom/node-exporter
     ports: 
      - "9100:9100"
@@ -47,122 +47,15 @@ services:
       - '--collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)"'       
       - '--collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'       
     deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.52.176
+      mode: global
     logging:
       driver: "fluentd"
       options:
         fluentd-async-connect: "true"
         fluentd-address: future_fluentd:24224
-        tag: nodeexporter1
-
-  nodeexporter2:       
-    image: prom/node-exporter
-    ports: 
-     - "9101:9100"
-    volumes:       
-      - "/proc:/host/proc:ro"       
-      - "/sys:/host/sys:ro"       
-      - "/:/rootfs:ro"       
-    command:       
-      - '--path.procfs=/host/proc'       
-      - '--path.sysfs=/host/sys'       
-      - '--path.rootfs=/host'       
-      - '--collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)"'       
-      - '--collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'       
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.54.208
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: nodeexporter2
-        
-  nodeexporter3:       
-    image: prom/node-exporter
-    ports: 
-     - "9102:9100"
-    volumes:       
-      - "/proc:/host/proc:ro"       
-      - "/sys:/host/sys:ro"       
-      - "/:/rootfs:ro"       
-    command:       
-      - '--path.procfs=/host/proc'       
-      - '--path.sysfs=/host/sys'       
-      - '--path.rootfs=/host'       
-      - '--collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)"'       
-      - '--collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'       
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.55.19
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: nodeexporter3
-        
-  nodeexporter4:       
-    image: prom/node-exporter
-    ports: 
-     - "9103:9100"
-    volumes:       
-      - "/proc:/host/proc:ro"       
-      - "/sys:/host/sys:ro"       
-      - "/:/rootfs:ro"       
-    command:       
-      - '--path.procfs=/host/proc'       
-      - '--path.sysfs=/host/sys'       
-      - '--path.rootfs=/host'       
-      - '--collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)"'       
-      - '--collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'       
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.60.96
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: nodeexporter4
-        
-  nodeexporter5:       
-    image: prom/node-exporter
-    ports: 
-     - "9104:9100"
-    volumes:       
-      - "/proc:/host/proc:ro"       
-      - "/sys:/host/sys:ro"       
-      - "/:/rootfs:ro"       
-    command:       
-      - '--path.procfs=/host/proc'       
-      - '--path.sysfs=/host/sys'       
-      - '--path.rootfs=/host'       
-      - '--collector.filesystem.ignored-mount-points="^(/rootfs|/host|)/(sys|proc|dev|host|etc)($$|/)"'       
-      - '--collector.filesystem.ignored-fs-types="^(sys|proc|auto|cgroup|devpts|ns|au|fuse\.lxc|mqueue)(fs|)$$"'       
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.57.41
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: nodeexporter5
+        tag: nodeexporter
       
-  cadvisor1:   
+  cadvisor:   
     image: google/cadvisor:latest
     ports:
       - "9000:8080"
@@ -172,100 +65,13 @@ services:
       - "/sys:/sys:ro"
       - "/var/lib/docker/:/var/lib/docker:ro"
     deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.52.176
+      mode: global
     logging:
       driver: "fluentd"
       options:
         fluentd-async-connect: "true"
         fluentd-address: future_fluentd:24224
-        tag: cadvisor1
-        
-  cadvisor2:   
-    image: google/cadvisor:latest
-    ports:
-      - "9001:8080"
-    volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:rw"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.54.208
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: cadvisor2
-
-  cadvisor3:   
-    image: google/cadvisor:latest
-    ports:
-      - "9002:8080"
-    volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:rw"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.55.19
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: cadvisor3
-        
-  cadvisor4:   
-    image: google/cadvisor:latest
-    ports:
-      - "9003:8080"
-    volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:rw"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.60.96
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: cadvisor4
-        
-  cadvisor5:   
-    image: google/cadvisor:latest
-    ports:
-      - "9004:8080"
-    volumes:
-      - "/:/rootfs:ro"
-      - "/var/run:/var/run:rw"
-      - "/sys:/sys:ro"
-      - "/var/lib/docker/:/var/lib/docker:ro"
-    deploy:       
-      placement:       
-        constraints:       
-         # hostname of the manager node!       
-         - node.hostname == 172.31.57.41
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-async-connect: "true"
-        fluentd-address: future_fluentd:24224
-        tag: cadvisor5
+        tag: cadvisor
         
 volumes:
   prometheus:
