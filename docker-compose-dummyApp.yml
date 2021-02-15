@@ -14,7 +14,7 @@ services:
        driver: "fluentd"
        options:
          fluentd-async-connect: "true"
-         fluentd-address: future_fluentd:24224
+         fluentd-address: fluentd:24224
          tag: frontend
          
    backend:
@@ -29,7 +29,7 @@ services:
        driver: "fluentd"
        options:
          fluentd-async-connect: "true"
-         fluentd-address: future_fluentd:24224
+         fluentd-address: 0.0.0.0:24224
          tag: backend
          
    redis:
@@ -58,6 +58,6 @@ services:
        driver: "fluentd"
        options:
          fluentd-async-connect: "true"
-         fluentd-address: future_fluentd:24224
+         fluentd-address: 172.31.54.208:24224
          tag: db
      
