@@ -19,6 +19,7 @@ services:
         
   grafana:
     image: grafana/grafana
+    user: root
     volumes:
       - "grafana:/var/lib/grafana"
     deploy:
