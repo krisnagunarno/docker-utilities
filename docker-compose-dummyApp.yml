@@ -16,7 +16,7 @@ services:
          tag: frontend
          
    backend:
-     image: kgunarno/bliblimart-backend:20
+     image: kgunarno/bliblimart-backend:23
      ports:
        - "8080"
      restart: always
