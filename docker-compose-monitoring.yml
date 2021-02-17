@@ -20,7 +20,7 @@ services:
   grafana:
     image: grafana/grafana
     volumes:
-      - "prometheus:/var/lib/grafana"
+      - "grafana:/var/lib/grafana"
     deploy:
       placement:
         constraints:
@@ -86,5 +86,5 @@ volumes:
     driver: vieux/sshfs:latest
     driver_opts:
       sshcmd: "ec2-user@172.31.54.208:/volumes/grafana"
-      IdentityFile: "/home/ec2-user/.ssh/id_rsa"
+      IdentityFile: "/root/.ssh/id_rsa"
       allow_other: ""
