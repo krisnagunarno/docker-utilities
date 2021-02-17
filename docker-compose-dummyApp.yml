@@ -2,7 +2,7 @@ version: '3'
 
 services:
    frontend:
-     image: kgunarno/bliblimart-frontend:19
+     image: kgunarno/bliblimart-frontend:20
      ports:
        - "80:80"
      deploy:
