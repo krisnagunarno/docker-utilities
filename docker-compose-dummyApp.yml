@@ -2,7 +2,7 @@ version: '3'
 
 services:
    frontend:
-     image: kgunarno/bliblimart-frontend:24
+     image: kgunarno/bliblimart-frontend:23
      ports:
        - "80"
      deploy:
@@ -16,7 +16,7 @@ services:
          tag: frontend
          
    backend:
-     image: kgunarno/bliblimart-backend:23
+     image: kgunarno/bliblimart-backend:24
      ports:
        - "8080"
      restart: always
