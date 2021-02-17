@@ -4,12 +4,10 @@ services:
    frontend:
      image: kgunarno/bliblimart-frontend:23
      ports:
-       - "9101:80"
+       - "80"
      deploy:
        placement:
          constraints: [node.role == worker]
-     environment:
-      - API_URL=future_backend:8082
      logging:
        driver: "fluentd"
        options:
@@ -18,9 +16,9 @@ services:
          tag: frontend
          
    backend:
-     image: kgunarno/bliblimart-backend:18
+     image: kgunarno/bliblimart-backend:19
      ports:
-       - "8082:8080"
+       - "8080"
      restart: always
      deploy:
        placement:
@@ -35,7 +33,7 @@ services:
    redis:
      image: redis
      ports:
-       - "6379:6379"
+       - "6379"
      restart: always
      deploy:
        placement:
@@ -50,7 +48,7 @@ services:
    db:
      image: mongo
      ports:
-       - "27017:27017"
+       - "27017"
      deploy:
        placement:
          constraints: [node.role == worker]
