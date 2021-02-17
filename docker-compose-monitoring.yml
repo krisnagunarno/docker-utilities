@@ -85,6 +85,6 @@ volumes:
   grafana:
     driver: vieux/sshfs:latest
     driver_opts:
-      sshcmd: "ec2-user@172.31.54.208:/volumes/grafana"
+      sshcmd: "root@172.31.54.208:/volumes/grafana"
       IdentityFile: "/root/.ssh/id_rsa"
       allow_other: ""
