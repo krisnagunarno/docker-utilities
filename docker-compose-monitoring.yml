@@ -20,7 +20,7 @@ services:
   grafana:
     image: grafana/grafana
     volumes:
-      - "grafana:/var/lib/grafana"
+      - "prometheus:/var/lib/grafana"
     deploy:
       placement:
         constraints:
